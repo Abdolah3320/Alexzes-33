@@ -1,0 +1,45 @@
+<footer>
+    <p>Alexzes Team © 2023 | 2024</p>
+    <a href="" style="text-decoration: none;"><i class="fa-brands fa-facebook"></i></a>
+    <a onclick="logout()">log out</a>
+    <a href="https://www.instagram.com/" style="text-decoration: none;"><i class="fa-brands fa-instagram"></i></a>
+</footer>
+<style>
+    footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 10px;
+        width: 100%;
+        color: #fff;
+        background-color: #2f455c;
+        font-family: Arial, sans-serif;
+        align-items: center;
+        position: relative;
+        margin-bottom: 0;
+        text-align: center;
+        gap: 10px;
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    i {
+        font-size: 30px;
+    }
+</style>
+<script>
+    function logout() {
+        var confirmed = window.confirm('Are you sure you want to logout?');
+        if (confirmed) {
+            window.location = '/logout';
+        }
+    }
+
+</script>

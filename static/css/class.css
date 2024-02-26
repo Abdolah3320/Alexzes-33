@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav {
+    background-color: #2f455c;
+    color: white;
+    box-shadow: 0px 1px 9px #777;
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    width: 100%;
+    position: fixed;
+    align-items: center;
+    padding: 3px 1em;
+    height: 3em;
+    z-index: 3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav {
+    background-color: #2f455c;
+    color: white;
+    box-shadow: 0px 1px 9px #777;
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    width: 100%;
+    position: fixed;
+    align-items: center;
+    padding: 3px 1em;
+    height: 3em;
+    z-index: 3;
+}
+
+.timeline-cont {
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4em;
+}
+
+.post {
+    box-shadow: 0px 0px 5px #555;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 20px;
+    display: flex;
+    width: 80%;
+    margin: 1em auto;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.post span{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: #2f455c;
+    border-bottom: #2f455c 2px solid;
+    padding: 5px;
+}
+
+.post span .pic{
+    background-color: #2f455c;
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 500;
+}
+
+.file {
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 10px;
+    color: #2f455c;
+    margin: auto;
+    margin-top: 10px;
+    transition: 0.2s;
+    text-align: center;
+    cursor: pointer;
+}
+
+.file:hover {
+    background-color: #19fac2;
+}
+
+#AddPost button {
+    width: auto;
+    padding: 5px 1em;
+    border: #2f455c solid 1px;
+    border-radius: 5px;
+    outline: none;
+    font-size: large;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#AddPost button:hover {
+    background-color: #2f455c;
+    color: #fff;
+}
+
+#AddPost {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 2em;
+    gap: 10px;
+    border-bottom: #2f455c 2px solid;
+}
+
+#AddPost textarea {
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px #555;
+    font-size: larger;
+}
+
+.timeline-cont {
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4em;
+}
+
+.post {
+    box-shadow: 0px 0px 5px #555;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 20px;
+    display: flex;
+    width: 80%;
+    margin: 1em auto;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.file {
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 10px;
+    color: #2f455c;
+    margin: auto;
+    margin-top: 10px;
+    transition: 0.2s;
+    text-align: center;
+    cursor: pointer;
+}
+
+.file:hover {
+    background-color: #19fac2;
+}

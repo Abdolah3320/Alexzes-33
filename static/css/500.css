@@ -1,0 +1,84 @@
+body {
+    background-color: #2f455c;
+}
+
+* {
+    color: #fff
+}
+
+.error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.t-404 {
+    font-size: 270px;
+    margin-bottom: -30px;
+}
+.return-btn {
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 2px solid #fff;
+    background-color: #2f455c;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.return-btn:hover {
+    background-color: #fff;
+    color: #2f455c;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+.error1{
+    font-size:x-large;
+    font-weight: bold;
+}
+.error2{
+    font-size:20px;
+}
+.error1,.error2{
+    margin-top: 10px;
+    margin-bottom: 27px;
+    text-align: center;
+}
+@media(max-width:546px){
+    .t-404{
+        font-size: 170px;
+    }
+    .error1{
+        font-size: large;
+    }
+    .error2{
+        font-size: medium;
+        width: 300px;
+    }
+}
+@media(max-width:350px){
+    .t-404{
+        font-size: 90px;
+    }
+    .error1{
+        font-size: medium;
+        margin-top:40px
+    }
+    .error2{
+        font-size: small
+    }
+}
+@media(max-width:260px){
+    .t-404{
+        font-size: 90px;
+    }
+    .error1{
+        font-size: 15px;
+        margin-top:40px
+    }
+    .error2{
+        font-size: 12px;
+        margin-left: 7%;
+    }
+}

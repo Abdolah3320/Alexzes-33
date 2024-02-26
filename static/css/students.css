@@ -1,0 +1,39 @@
+section{
+    margin-top: 4.5em;
+}
+
+.t{
+    width: 95%;
+    border-bottom: 2px solid #2f455c;
+    color: #2f455c;
+    margin: auto;
+    padding: 5px 1em;
+    font-size: xx-large;
+}
+
+.acc{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 1em;
+    border-bottom: 1px solid #2f455c;
+    width: 85%;
+    margin: auto;
+    align-items: center;
+}
+
+.acc h1{
+    background-color: #2f455c;
+    color: #fff;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.else{
+    padding: 5px;
+    text-align: center;
+    color: #da466b;
+}

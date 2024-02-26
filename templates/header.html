@@ -1,0 +1,170 @@
+<header>
+    {% if path %}
+    <div class="path" id="path1">
+        {% for i in path %}
+        {% if i[1] %}
+        <h4><a href="{{ i[1] }}">{{ i[0] }}</a></h4>
+        {% else %}
+        <h4>{{ i[0] }}</h4>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div class="path" id="path2">
+        <h4><a href="{{ path[0][1] }}">{{ path[0][0] }}</a></h4>
+    </div>
+    {% else %}
+    <h3>{{ name }}</h3>
+    {% endif %}
+    {% if lst %}
+    <i onclick="showList('list', 'list2', this)" class="fa fa-align-right" id="toShowBtn"></i>
+    {% endif %}
+</header>
+
+{% if lst %}
+<div id="list2">
+    <div id="list">
+        {% for i in lst %}
+        {% if c%}
+        <a class="div" href="{{ i[2] }}">
+            <h3>{{ i[0] }}</h3>
+            <h4>{{ i[1] }} <i class="fa fa-arrow-up-right-from-square"></i></h4>
+        </a>
+        {% else %}
+        {% if i[0] == 'st' %}
+        <a class="div" href="{{ i[2] }}">
+            <h3>{{ i[1] }}</h3>
+            <h4><i class="fa fa-arrow-up-right-from-square"></i></h4>
+        </a>
+        {% else %}
+        <div class="div">
+            <h3>{{ i[0] }}</h3>
+            <h4>{{ i[1] }}</h4>
+        </div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<style>
+    header {
+        top: 0;
+        z-index: 10;
+        width: 100%;
+        position: fixed;
+        display: flex;
+        padding: 0 2em;
+        height: 4em;
+        background: #2f455c;
+        color: #fff;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 0 7px #000;
+    }
+
+
+    header .fa {
+        transition: 0.1s;
+        font-size: x-large;
+        cursor: pointer;
+    }
+
+    header .path {
+        display: flex;
+        gap: 1em;
+        align-items: center;
+    }
+
+    header #path2{
+        display: none;
+    }
+
+    header .path a {
+        color: #fff;
+        text-decoration: none;
+        padding: 2px;
+        transition: 0.15s;
+        font-size: large;
+    }
+
+    header .path a:hover {
+        color: #44b0ce;
+    }
+
+    #list {
+        display: none;
+        top: 4.1em;
+        padding: 1em;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #000;
+        gap: 1em;
+        margin: 5px;
+        right: 0;
+        z-index: 100;
+        position: fixed;
+        background-color: #fff;
+    }
+
+    #list2 {
+        display: none;
+        z-index: 100;
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+    }
+
+    #list .fa{
+        font-size: small;
+    }
+
+
+    #list div,
+    #list a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #000;
+        justify-content: space-between;
+        gap: 1em;
+    }
+
+    #list h4 {
+        color: #014a8e;
+    }
+
+    @media (max-width: 600px) {
+        header #path1{
+            display: none;
+        }
+        header #path2{
+            display: flex;
+        }
+    }
+</style>
+
+<script>
+    function hide(id, id2, elm) {
+        var toHide = document.getElementById(id)
+        var toHide2 = document.getElementById(id2)
+        toHide.style.display = 'none'
+        toHide2.style.display = 'none'
+        elm.onclick = function () {
+            showList(id, id2, elm)
+        }
+        elm.className = 'fa fa-align-right'
+    }
+    function showList(id, id2, elm) {
+        var toShow = document.getElementById(id)
+        var toShow2 = document.getElementById(id2)
+        toShow2.style.display = 'flex'
+        toShow.style.display = 'grid'
+        toShow2.onclick = function () {
+            hide(id, id2, elm)
+        }
+        elm.onclick = function () {
+            hide(id, id2, elm)
+        }
+        elm.className = 'fa fa-remove'
+    }
+</script>

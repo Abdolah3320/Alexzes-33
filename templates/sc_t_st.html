@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toall.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sc_t_st.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <section class="content" id="content">
+        {% if cards %}
+        {% for i in cards %}
+        <div class="card" id="{{ i[0] }}">
+            {% if not c %}
+            <h4 class="cls">Classes: {{ i[5] }}</h4>
+            <a href="{{ i[-1] }}">
+                <h1>{{ i[1] }}</h1>
+            </a>
+            <h4>Students : {{ i[6] }}</h4>
+            {% else %}
+            <h4>Students : {{ i[7] }}</h4>
+            <a href="{{ i[-1] }}">
+                <h1>{{ i[1] }}</h1>
+            </a>
+            <h4 class="cls" onclick="copyText('{{ i[0] }}')"> Code: {{ i[0] }} <i style="color: #fff;"
+                    class="fa fa-copy"></i></h4>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <form id="{{ frm_id }}" style="display: none;">
+            <div class="upper">
+                <h2>New {{ frm }}</h2>
+                <i class="fa fa-remove" onclick="hide2('form', document.getElementById('add'))"></i>
+            </div>
+            {% if t %}
+            <input required name="classCode" type="text" placeholder="Class Code">
+            {% else %}
+            <input maxlength="10" required name="g_name" type="text" placeholder="Name">
+            {% endif %}
+            <a href="{{ url_new_g }}" id="url_new_g" style="display: none;"></a>
+            <button type="submit">Add</button>
+        </form>
+        <i id="add" class="material-icons" onclick="show2(this)">add</i>
+        {% else %}
+        <form id="{{ frm_id }}">
+            <div class="upper">
+                <h2>New {{ frm }}</h2>
+            </div>
+            {% if t %}
+            <input required name="classCode" type="text" placeholder="Class Code">
+            {% else %}
+            <input maxlength="10" required name="g_name" type="text" placeholder="Name">
+            {% endif %}
+            <a href="{{ url_new_g }}" id="url_new_g" style="display: none;"></a>
+            <button type="submit">Add</button>
+        </form>
+        {% endif %}
+
+    </section>
+    {% include 'footer.html' %}
+</body>
+<script src="{{ url_for('static', filename='js/sc_t_st.js') }}"></script>
+{% if t %}
+<script>
+    function submitNewClassT(form) {
+        var req = new XMLHttpRequest(), formdata = new FormData(form),
+        route = document.getElementById('url_new_g').href
+        req.open('POST', route)
+        req.onreadystatechange = function () {
+            if (req.readyState == 4 && req.status == 200) {
+                try {
+                    var json = JSON.parse(req.responseText);
+                    if (json.exists) {
+                        handleError(json.error, form)
+                        unStopAll()
+                    } else {
+                        window.location.reload()
+                    }
+                } catch {
+                    handleError('Internal Server Error', form)
+                    unStopAll()
+                }
+            }
+        }
+        req.send(formdata)
+    }
+    var g_form = document.getElementById('form_class_code')
+    g_form.addEventListener('submit', function (ev) {
+        stopAll()
+        ev.preventDefault()
+        submitNewClassT(this)
+    })
+</script>
+{% endif %}
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toall.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/subjects.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <section>
+        {% for i in sdata %}
+        <div class="container">
+            <div class="sub">
+                <h2>{{ i[1] }}</h2>
+                <i class="fa fa-caret-down" onclick="show(this, '{{i[0]}}')"></i>
+            </div>
+            <div class="files" id="{{i[0]}}">
+                <div class="fl"></div>
+                {% for j in i[4] %}
+                <div class="fl">
+                    <span>
+                        <i class="fa {{j[2]}}"></i>
+                        <h3>{{j[0]}}</h3>
+                    </span>
+                    <span>
+                        <!-- <a href="{{ j[1] }}" style="color: black; " download="{{ j[3] }}"> -->
+                        <i class="fa fa-arrow-up-right-from-square"></i>
+                        <!-- </a> -->
+                        <!-- <a href="" style="color: black;"> -->
+                        <input onchange="addToRemove('{{j[4]}}', this)" type="checkbox" style="display: none;">
+                        <!-- </a> -->
+                    </span>
+
+                </div>
+                {% endfor %}
+                <div class="form">
+                    <input onchange="addFile(this, `{{ i[6] }}`)" type="file" style="display: none;" id="add-{{i[0]}}">
+                    <button type="button" onclick="choose_file('add-{{i[0]}}')">Add File</button>
+                    {% if i[4] %}
+                    <button class="del" onclick="startRemove('{{i[0]}}', '{{i[7]}}')"><i
+                            class="material-icons edit">delete</i></button>
+                </div>
+                <div class="form_del form" style="display: none;">
+                    <button class="del" onclick="doneRemove('{{i[0]}}', '{{i[7]}}')">Delete</button>
+                    <button onclick="CancelRemove('{{i[0]}}')">Cancel</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="container">
+            <div class="sub">
+                <h2>New Subject</h2>
+                <i class="fa fa-caret-down" onclick="show(this, 'addSubForm')"></i>
+            </div>
+            <form id="addSubForm" onsubmit="sendAddSub(this, '{{ addSubRoute }}'); return false;">
+                <input required maxlength="20" name="name" type="text" placeholder="Name">
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </section>
+    {% include 'footer.html' %}
+</body>
+<script src="{{ url_for('static', filename='js/subjects.js') }}"></script>
+
+</html>

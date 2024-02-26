@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toall.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/class.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <section>
+        {% if sc %}
+            <form onsubmit="subAddPost(this, '{{ add_sub }}'); return false;" id="AddPost">
+                <h3>Add a New Post</h3>
+                <textarea required maxlength="3000" name="data" placeholder="..."></textarea>
+                <button type="submit">Post</button>
+            </form>
+            <script>
+                function subAddPost(frm, route) {
+                    var ids = window.todelete
+                    var req = new XMLHttpRequest();
+                    var formData = new FormData(frm);
+                    req.open('POST', route)
+                    req.send(formData)
+                    req.onreadystatechange = function () {
+                        if (req.readyState === 4) {
+                            if (req.status === 200) {
+                                var x = req.response
+                                var json = JSON.parse(x)
+                                if (json.error) {
+                                    alert('Error while uploading the file')
+                                } else {
+                                    window.location.reload()
+                                    window.todelete = []
+                                }
+                            } else {
+                                alert('Error: ' + req.status);
+                            }
+                        }
+                    }
+                }
+            </script>
+            {% endif %}
+            {% for i in posts %}
+            <div class="post">
+                <span>
+                    <h3 class="pic">{{ i[-1][0] }}</h3>
+                    <h4 class="nm">{{ i[-1][1] }}</h4>
+                </span>
+                <p>{{ i[2] }}</p>
+                {% for j in i[4] %}
+                <a href="{{ j[1] }}" class="file"><i class="{{ j[2] }}"></i> {{ j[0] }}</a>
+                {% endfor %}
+            </div>
+            {% endfor %}
+    </section>
+    
+    {% include 'footer.html' %}
+</body>
+
+</html>

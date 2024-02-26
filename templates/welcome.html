@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/toall.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css') }}">
+  <title>Welcome Page</title>
+</head>
+
+<body>
+  <!-- <img src="logo.jpg" alt="logo">   -->
+  <div id="none" style="height: 55px;margin: 1em;"></div>
+  <div id="switch">
+    <div class="selector" id="selector"></div>
+    <h3 onclick="select(this, 'translateX(0)'); school()" id="sel" class="school">School</h3>
+    <h3 onclick="select(this, 'translateX(5.13em)'); teacher()" class="teacher">Teacher</h3>
+    <h3 onclick="select(this, 'translateX(10.47em)'); student()" class="student">Student</h43>
+  </div>
+
+  <div class="container" id="container">
+    <div class="form-container sign-up">
+      <form id="school">
+        <h1>School Account</h1>
+        <input name="sc-name" class="name" type="text" placeholder="School Name" required>
+        <input name="sc-address" type="text" placeholder="School Address" required>
+        <input name="sc-email" type="email" placeholder="Email" required>
+        <input id="sc-pass" name="sc-pass" minlength="8" type="password" placeholder="Password" required>
+        <input id="sc-pass2" minlength="8" type="password" placeholder="Re-Enter Password" required>
+        <button type="submit">Sign Up</button>
+        <button type="reset" class="login">Sign in instead</button>
+      </form>
+      <form style="display:none" id="teacher">
+        <h1>Teacher Account</h1>
+        <input name="t-name" class="name" type="text" placeholder="Name" required>
+        <input name="t-email" type="email" placeholder="Email" required>
+        <input id="t-pass" name="t-pass" minlength="8" type="password" placeholder="Password" required>
+        <input id="t-pass2" minlength="8" type="password" placeholder="Re-Enter Password" required>
+        <button type="submit">Sign Up</button>
+        <button type="reset" class="login">Sign in instead</button>
+      </form>
+      <form style="display:none" id="student">
+        <h1>Student Account</h1>
+        <input name="st-name" class="name" type="text" placeholder="Name" required>
+        <input name="st-cls-code" type="text" placeholder="Class Code" required>
+        <input name="st-email" type="email" placeholder="Email" required>
+        <input id="st-pass" name="st-pass" minlength="8" type="password" placeholder="Password" required>
+        <input id="st-pass2" minlength="8" type="password" placeholder="Re-Enter Password" required>
+        <button type="submit">Sign Up</button>
+        <button type="reset" class="login">Sign In instead</button>
+      </form>
+      <form id="verify" style="gap: 1em;">
+        <h1>Verify the E-mail</h1>
+        Enter the number sent to your E-mail
+        <input name="v-num" type="number" placeholder="Verfication number" required>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="form-container sign-in">
+      <form id="loginform">
+        <h1> Sign In </h1>
+        <input name="l-email" type="email" placeholder="Email" required>
+        <input name="l-pass" minlength="8" type="password" placeholder="Password" required>
+        <button type="submit">Sign In</button>
+        <button type="reset" id="reg2">Sign Up instead</button>
+      </form>
+    </div>
+    <div class="toggle-container">
+      <div class="toggle">
+        <div class="toggle-panel toggle-left">
+          <h1 class="tohide">Welcome Back!</h1>
+          <p class="tohide">Enter your E-mail and Password to Contineu</p>
+          <button class="hidden tohide" id="login">Sign In</button>
+        </div>
+        <div class="toggle-panel toggle-right">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your Sign Up data to make a new account</p>
+          <button class="hidden" id="register">Sign Up</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="{{ url_for('static', filename='js/welcome.js') }}"></script>
+</body>
+
+</html>
